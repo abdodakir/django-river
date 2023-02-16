@@ -19,7 +19,7 @@ class RiverApp(AppConfig):
                 workflows = self.get_model('Workflow').objects.filter(field_name=field_name)
                 if workflows.count() == 0:
                     LOGGER.warning("%s field doesn't seem have any workflow defined in database. You should create its workflow" % field_name)
-            except (OperationalError, ProgrammingError):
+            except (OperationalError, ProgrammingError, Exception):
                 pass
 
         from river.config import app_config
